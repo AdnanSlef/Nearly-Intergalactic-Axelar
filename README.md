@@ -1,7 +1,7 @@
 <h1 align="center"><b>NEARly Intergalactic Axelar</b></h1>
 
 <div align="center">
-  <img src ="https://github.com/AdnanSlef/Nearly-Intergalactic-Axelar/blob/95195ebd0436bc132e084edea16b64c5a70c2ab9/Logo_UW.png"
+  <img src ="https://github.com/AdnanSlef/Nearly-Intergalactic-Axelar/blob/470e2328431876ebd5b0cbf7e0600b57864c5105/LogoT.png"
 </div>
 
 
