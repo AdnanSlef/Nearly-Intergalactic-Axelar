@@ -66,7 +66,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         PromiseCreateArgs memory callback =
             near.auroraCall(address(this), abi.encodePacked(this.setCallback.selector), 0, SET_CALLBACK_NEAR_GAS);
 
-        callSet.then(callback).transact();
+        callSet.transact();
     }
 
     // First approve this contract with the wNEAR ERC-20, then call fund
@@ -81,6 +81,19 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         string calldata sourceAddress_,
         bytes calldata payload_
     ) internal override {
+        sourceChain = sourceChain_;
+        sourceAddress = sourceAddress_;
+        Params memory params = abi.decode(payload_, (Params));
+
+        set(params);
+    }
+
+    // DEBUG; delete
+    function backdoor(
+        string calldata sourceChain_,
+        string calldata sourceAddress_,
+        bytes calldata payload_
+    ) public {
         sourceChain = sourceChain_;
         sourceAddress = sourceAddress_;
         Params memory params = abi.decode(payload_, (Params));
