@@ -73,6 +73,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
     function fund(uint128 amount) public {
         wNEAR.transferFrom(msg.sender, address(this), amount);
         // TODO per-user funding
+        // Also todo magic funding with bridging
     }
 
     // Handle Axelar GMP receipt
