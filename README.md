@@ -1,1 +1,6 @@
-# NEARly Intergalactic Axelar: Adding NEAR support to Axelar for Fun and Profit
+<div align="center">
+  # NEARly Intergalactic Axelar
+  
+<div align="left">
+
+
