@@ -1,6 +1,3 @@
-<div align="center">
-  # NEARly Intergalactic Axelar
-  
-<div align="left">
+<h1 align="center"><b>NEARly Intergalactic Axelar</b></h1>
 
 
