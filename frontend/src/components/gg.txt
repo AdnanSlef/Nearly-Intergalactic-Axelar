@@ -3,7 +3,7 @@ import Web3 from "web3";
 import { AbiItem } from "web3-utils";
 import { Contract } from "web3-eth-contract";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../utils/constants";
-import { BigNumber } from "bignumber.js";
+import logo from "./logo.png"; // Replace with the actual path to your image
 
 function Home() {
   const [web3, setWeb3] = useState<Web3>();
@@ -43,32 +43,39 @@ function Home() {
   }, [web3]);
 
   const handleConnect = async () => {
-    console.log("HELLO");
     if (!web3) {
       return;
     }
     const accounts = await web3.eth.getAccounts();
-    setAccount(accounts[0]); // Set the first account as the selected account
+    setAccount(accounts[0]);
   };
 
   const handleSend = async () => {
     if (!web3 || !contract) {
       return;
     }
-
-    // Convert attachedNear to uint128
-    const attachedNearUInt128 = new BigNumber(attachedNear).toFixed();
-
+    const attachedNearWei = web3.utils.toWei(attachedNear.toString(), "ether");
     const payload = web3.utils.utf8ToHex(data);
 
     await contract.methods
-      .send(destinationChain, destinationAddress, attachedNearUInt128, payload)
-      .send({ from: account, value: 0.1 });
+      .send(destinationChain, destinationAddress, attachedNearWei, payload)
+      .send({ from: account, value: attachedNearWei });
+
+    // Contract call successful, perform further actions if needed
   };
 
   return (
     <div>
       <h1>Ethereum React App</h1>
+      <img
+        src={logo}
+        alt="Logo"
+        style={{
+          width: "500px", // Adjust the width as per your requirement
+          height: "auto", // Maintain aspect ratio by setting height to "auto"
+          animation: "rotate 2s infinite linear", // Add rotation animation
+        }}
+      />
       {web3 ? (
         <div>
           <p>Connected Account: {account}</p>
