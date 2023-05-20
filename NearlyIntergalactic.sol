@@ -35,7 +35,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
     string public sourceAddress;
     IAxelarGasService public immutable gasService;
 
-    bytes32 public constant SETTER_ROLE = keccak256("SETTER_ROLE");
+    bytes32 public constant CREATOR_ROLE = keccak256("CREATOR_ROLE");
     bytes32 public constant CALLBACK_ROLE = keccak256("CALLBACK_ROLE");
 
     IERC20 public wNEAR;
@@ -50,7 +50,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         near = AuroraSdk.initNear(_wNEAR);
         wNEAR = _wNEAR;
 
-        _grantRole(SETTER_ROLE, msg.sender);
+        _grantRole(CREATOR_ROLE, msg.sender);
         _grantRole(CALLBACK_ROLE, AuroraSdk.nearRepresentitiveImplicitAddress(address(this)));
     }
 
@@ -60,7 +60,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         uint128 attachedNear;
         bytes data;
     }
-    function set(Params memory params) public onlyRole(SETTER_ROLE) {
+    function set(Params memory params) internal {
         PromiseCreateArgs memory callSet =
             near.call(socialdbAccountId, "set", params.data, params.attachedNear, SET_NEAR_GAS);
         PromiseCreateArgs memory callback =
