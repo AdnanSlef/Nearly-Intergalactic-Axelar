@@ -60,11 +60,11 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         uint128 attachedNear;
         bytes data;
     }
-    function set(Params memory params) internal {
+    function set(Params memory params) public { //todo internal
         PromiseCreateArgs memory callSet =
             near.call(socialdbAccountId, "set", params.data, params.attachedNear, SET_NEAR_GAS);
         PromiseCreateArgs memory callback =
-            near.auroraCall(address(this), abi.encodePacked(this.setCallback.selector), 0, SET_CALLBACK_NEAR_GAS);
+            near.auroraCall(address(this), abi.encodePacked(this.setCallback.selector), 0, SET_CALLBACK_NEAR_GAS); //todo remove or add back
 
         callSet.transact();
     }
