@@ -25,6 +25,6 @@
 4. Use the dApp web UI to begin your journey, which will call `HomePlanet.travelToNear()`:  
     * destinationChain = aurora  
     * destinationAddress = <`NearlyIntergalactic` address>  
-    * attachedNear = <Quantity of `wNEAR` to attach, ex. 5000000000000000000000000>  
+    * attachedNear = <Quantity of `wNEAR` to attach, ex. 3000000000000000000000000>  
     * data = <Near Social DB, as Bytes Encoded JSON>  
     * {msg.value} = 100000000000000000 wei  
