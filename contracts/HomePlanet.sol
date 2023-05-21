@@ -27,7 +27,7 @@ contract HomePlanet is AxelarExecutable {
     }
 
     // Make a cross-chain call using Axelar, all the way to the NEAR blockahin
-    function send(
+    function travelToNear(
         string calldata destinationChain,
         string calldata destinationAddress,
         uint128 attachedNear,
