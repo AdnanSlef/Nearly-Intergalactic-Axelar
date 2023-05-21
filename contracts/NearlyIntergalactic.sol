@@ -13,7 +13,7 @@ import {
     PromiseCreateArgs,
     PromiseResultStatus,
     PromiseWithCallback
-} from "./aurora-sdk/AuroraSdk.sol";
+} from "./CustomAuroraSdk.sol";
 
 // When making a call to another NEAR contract, you must specify how much NEAR gas
 // will be attached to the call (this is simlar to the `gas` argument in the EVM `call` opcode).

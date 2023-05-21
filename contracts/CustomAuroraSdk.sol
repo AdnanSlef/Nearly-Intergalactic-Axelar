@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: CC-BY-1.0
 pragma solidity ^0.8.17;
 
-import "./Borsh.sol";
-import "./Codec.sol";
-import "./Types.sol";
-import "./Utils.sol";
+import "@auroraisnear/aurora-sdk/aurora-sdk/Borsh.sol";
+import "@auroraisnear/aurora-sdk/aurora-sdk/Codec.sol";
+import "@auroraisnear/aurora-sdk/aurora-sdk/Types.sol";
+import "@auroraisnear/aurora-sdk/aurora-sdk/Utils.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 // Address of Cross Contract Call precompile in Aurora.
@@ -139,7 +139,6 @@ library AuroraSdk {
         }
 
         if (nearBalance > 0) {
-            // No need to transfer from sender; wNEAR transfer is handled separately
             // near.wNEAR.transferFrom(msg.sender, address(this), uint256(nearBalance));
         }
 
