@@ -12,12 +12,12 @@
 
 - The `/contracts` directory contains the Solidity smart contracts - `HomePlanet.sol` and `NearlyIntergalactic.sol` - that were uploaded via Remix to Avalanche and Aurora respectively
 - These two smart contracts acts as `AxelarExecutable` and handle to the to-and-from of the Axelar GMP call
-- The `CustomAuroraSdk.sol` is what we use on the Aurora side to connect it with Near smart contracts
+- The `CustomAuroraSdk.sol` is what we use on the Aurora side to connect it with NEAR smart contracts
 
 #### Intergalactic Passport dApp
 
 - The `/frontend` directory contains all the React - Typescript frontend code
-- The dApp connects to your wallet, and allows you to send the transaction from the Avalanche side that will make its way to Near side via Aurora
+- The dApp connects to your wallet, and allows you to send the transaction from the Avalanche side that will make its way to NEAR side via Aurora
 - As we go through the different chains, the traveler's passport will be updated with the chain's stamp
 - At the end, the transaction completes by making a post to Near Social
 
