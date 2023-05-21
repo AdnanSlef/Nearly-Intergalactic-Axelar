@@ -1,0 +1,13 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .hover-effect {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .hover-effect:hover {
+    transform: translateY(-10px); /* Adjust the amount of lift by changing the translateY value */
+  }
+  
