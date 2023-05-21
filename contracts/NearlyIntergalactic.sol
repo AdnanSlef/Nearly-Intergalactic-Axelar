@@ -15,15 +15,11 @@ import {
     PromiseWithCallback
 } from "./CustomAuroraSdk.sol";
 
-// When making a call to another NEAR contract, you must specify how much NEAR gas
-// will be attached to the call (this is simlar to the `gas` argument in the EVM `call` opcode).
-// The typical unit of has on Near is the teragas (Tgas), where 1 Tgas = 10^12 gas.
-// For example, the block gas limit on NEAR is 1000 Tgas, and the transaction gas limit is 300 Tgas.
+// The amount of NEAR gas attached to each call
 uint64 constant SET_NEAR_GAS = 50_000_000_000_000;
 uint64 constant SET_CALLBACK_NEAR_GAS = 10_000_000_000_000;
 
-// We use the Open Zeppelin access control feature because the methods of this contract should
-// not be open to arbitrary addresses.
+// We use the Open Zeppelin access control feature for security
 contract NearlyIntergalactic is AccessControl, AxelarExecutable {
     using AuroraSdk for NEAR;
     using AuroraSdk for PromiseCreateArgs;
@@ -40,7 +36,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
 
     IAxelarGasService public immutable gasService;
 
-    bytes32 public constant CREATOR_ROLE = keccak256("CREATOR_ROLE");
+    bytes32 public constant CREATOR_ROLE  = keccak256("CREATOR_ROLE");
     bytes32 public constant CALLBACK_ROLE = keccak256("CALLBACK_ROLE");
 
     IERC20 public wNEAR;
@@ -61,19 +57,19 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
 
     // Pass along the message to a native NEAR blockchain application, Near Social
     function nearGMP(Params memory params) internal {
+        // Prepare call chain
         PromiseCreateArgs memory callSet =
             near.call(socialdbAccountId, "set", params.data, params.attachedNear, SET_NEAR_GAS);
         PromiseCreateArgs memory callback =
             near.auroraCall(address(this), abi.encodePacked(this.setCallback.selector), 0, SET_CALLBACK_NEAR_GAS);
 
+        // Make XCC call through NEAR blockchain
         callSet.then(callback).transact();
     }
 
     // First approve this contract with the wNEAR ERC-20, then call fund
     function fund(uint128 amount) public {
         wNEAR.transferFrom(msg.sender, address(this), amount);
-        // TODO per-user funding
-        // Also todo magic funding with bridging
     }
 
     // Handle Axelar GMP receipt
