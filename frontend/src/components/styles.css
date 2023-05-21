@@ -1,0 +1,22 @@
+#explore_path_over {
+    stroke-dasharray: 1100;
+    stroke-dashoffset: 0;
+    animation: dash 15s linear forwards;
+  }
+  
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -1100;
+    }
+  }
+  
+  #explore_x {
+    opacity: 0;
+    animation: fade-in 1s linear forwards;
+    animation-delay: 14s;
+  }
+  @keyframes fade-in {
+    to {
+      opacity: 1;
+    }
+  }

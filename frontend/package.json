@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ramonak/react-progress-bar": "^5.0.3",
     "avalanche": "^3.16.0",
     "bignumber.js": "^9.1.1",
     "ether": "^0.0.9",
     "globalthis": "^1.0.3",
+    "rc-progress": "^3.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "web3": "^1.10.0",
@@ -22,6 +24,7 @@
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
     "@ethersproject/providers": "^5.4.7",
+    "@fdmg/ts-react-progress-bar": "^1.0.8",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
