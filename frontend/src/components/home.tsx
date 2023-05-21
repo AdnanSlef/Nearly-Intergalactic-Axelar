@@ -1,8 +1,11 @@
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
-import { HOME_ABI, HOME_ADDRESS } from "../utils/constants";
+import { HOME_ABI, HOME_ADDRESS, NEARLY_ADDRESS } from "../utils/constants";
 import { handleStop } from "../utils/handleStop";
 import useInterval from "../utils/useInterval";
+import { BigNumber } from "bignumber.js";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 
 function Home() {
   const [steps, setSteps] = useState(0);
@@ -19,7 +22,7 @@ function Home() {
     connect();
   }, []);
 
-  const handleSend = async () => {
+  const handleTakeoff = async () => {
     setSteps((prev) => prev + 1);
     const provider = new ethers.providers.Web3Provider(window.ethereum as any);
     const signer = provider.getSigner(0);
@@ -29,15 +32,30 @@ function Home() {
       signer || provider
     );
     console.log(contract);
-    // const attachedNearUInt128 = new BigNumber(attachedNear).toFixed();
-    // const tx = await contract.travelToNear(
-    //   destinationChain,
-    //   destinationAddress,
-    //   attachedNearUInt128,
-    //   data,
-    //   { value: ethers.utils.parseEther("1") }
-    // );
-    // console.log(tx);
+    const attachedNear = new BigNumber("1000000000000000000000000").toFixed();
+    const profileName = NEARLY_ADDRESS.slice(2).toLowerCase();
+    const data = {
+      data: {
+        [`${profileName}.aurora`]: {
+          profile: {
+            name: "intergalactic_traveller",
+          },
+        },
+      },
+    };
+    console.log(JSON.stringify(data));
+    const hexStr = ethers.utils.hexlify(
+      ethers.utils.toUtf8Bytes(JSON.stringify(data))
+    );
+    console.log(hexStr);
+    const tx = await contract.travelToNear(
+      "aurora",
+      NEARLY_ADDRESS,
+      attachedNear,
+      hexStr,
+      { value: ethers.utils.parseEther("1") }
+    );
+    console.log(tx);
   };
 
   useInterval(
@@ -50,11 +68,14 @@ function Home() {
   );
 
   return (
-    <div>
-      <h1>Ethereum React App</h1>
-      <div>
-        <button onClick={handleSend}>Send Transaction</button>
-      </div>
+    <div className="min-h-screen w-full flex flex-col items-center justify-center">
+      <AwesomeButton
+        // cssModule={AwesomeButtonStyles}
+        type="primary"
+        onPress={handleTakeoff}
+      >
+        Begin Intergalactic Experience!
+      </AwesomeButton>
     </div>
   );
 }
