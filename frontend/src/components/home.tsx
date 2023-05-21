@@ -76,7 +76,7 @@ function Home() {
         setSteps((prev) => prev + 1);
       }
     },
-    steps <= 0 ? null : 1000
+    steps <= 0 ? null : 3000
   );
 
   return (
