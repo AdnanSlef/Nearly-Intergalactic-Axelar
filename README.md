@@ -17,8 +17,8 @@
     * gasReceiver = `0xA2C84547Db9732B27D45c06218DDAEFcc71e452D`  
 
 2. Deploy `HomePlanet` on any Axelar-supported chain, such as Avalanche shown here:  
-    * gateway = ?  
-    * gasReceiver = ?  
+    * gateway = `0xC249632c2D40b9001FE907806902f63038B737Ab`  
+    * gasReceiver = `0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6`  
 
 3. Ensure that `NearlyIntergalactic` has the needed `wNEAR`.
 
