@@ -4,7 +4,7 @@ import ImageComponent from "./components/slide";
 function App() {
   return (
     <div>
-      <ImageComponent index={1} />
+      <ImageComponent index={4} />
       <Home />
     </div>
   );
