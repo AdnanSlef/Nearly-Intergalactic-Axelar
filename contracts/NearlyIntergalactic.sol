@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: CC-BY-1.0
 pragma solidity ^0.8.17;
 
-import { AxelarExecutable } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol";
-import { IAxelarGateway } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
+import { AxelarExecutable  } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol";
+import { IAxelarGateway    } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
 import { IAxelarGasService } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
-
-import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { AccessControl     } from "@openzeppelin/contracts/access/AccessControl.sol";
+import { IERC20            } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {
     AuroraSdk,
     Codec,
@@ -31,8 +30,6 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
     using AuroraSdk for PromiseWithCallback;
     using Codec for bytes;
 
-    string public sourceChain;
-    string public sourceAddress;
     IAxelarGasService public immutable gasService;
 
     bytes32 public constant CREATOR_ROLE = keccak256("CREATOR_ROLE");
@@ -60,7 +57,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         uint128 attachedNear;
         bytes data;
     }
-    function set(Params memory params) public { //todo internal
+    function set(Params memory params) internal {
         PromiseCreateArgs memory callSet =
             near.call(socialdbAccountId, "set", params.data, params.attachedNear, SET_NEAR_GAS);
         PromiseCreateArgs memory callback =
@@ -82,21 +79,8 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         string calldata sourceAddress_,
         bytes calldata payload_
     ) internal override {
-        sourceChain = sourceChain_;
-        sourceAddress = sourceAddress_;
-        Params memory params = abi.decode(payload_, (Params));
-
-        set(params);
-    }
-
-    // DEBUG; delete
-    function backdoor(
-        string calldata sourceChain_,
-        string calldata sourceAddress_,
-        bytes calldata payload_
-    ) public {
-        sourceChain = sourceChain_;
-        sourceAddress = sourceAddress_;
+        string memory sourceChain = sourceChain_;
+        string memory sourceAddress = sourceAddress_;
         Params memory params = abi.decode(payload_, (Params));
 
         set(params);
