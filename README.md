@@ -1,7 +1,7 @@
 # NEARly Intergalactic Axelar
 
 <div align="center">
-  <img src ="https://github.com/AdnanSlef/Nearly-Intergalactic-Axelar/blob/ea85a4c04e8bcf5e83df32651a0177c60840b53f/T_Logo.png">
+  <img src ="https://github.com/AdnanSlef/Nearly-Intergalactic-Axelar/blob/d730afbc78915e5a11d82b7aa44b625c7e8068fd/IT_Logo1.png">
 </div>
 
 ## Structure
