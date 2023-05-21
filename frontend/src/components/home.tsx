@@ -80,37 +80,38 @@ function Home() {
     <div>
       <h1>Ethereum React App</h1>
       {web3 ? (
-        <div>
-          <p>Connected Account: {account}</p>
-          <p>Source Chain: {sourceChain}</p>
-          <p>Source Address: {sourceAddress}</p>
-          <p>Destination Chain:</p>
-          <input
-            type="text"
-            value={destinationChain}
-            onChange={(e) => setDestinationChain(e.target.value)}
-          />
-          <p>Destination Address:</p>
-          <input
-            type="text"
-            value={destinationAddress}
-            onChange={(e) => setDestinationAddress(e.target.value)}
-          />
-          <p>Attached NEAR:</p>
-          <input
-            type="text"
-            value={attachedNear}
-            onChange={(e) => setAttachedNear(e.target.value)}
-          />
-          <p>Data:</p>
-          <textarea
-            value={data}
-            onChange={(e) => setData(e.target.value)}
-          ></textarea>
-          <br />
-          <button onClick={handleSend}>Send Transaction</button>
-        </div>
+        <div></div>
       ) : (
+        // <div>
+        //   <p>Connected Account: {account}</p>
+        //   <p>Source Chain: {sourceChain}</p>
+        //   <p>Source Address: {sourceAddress}</p>
+        //   <p>Destination Chain:</p>
+        //   <input
+        //     type="text"
+        //     value={destinationChain}
+        //     onChange={(e) => setDestinationChain(e.target.value)}
+        //   />
+        //   <p>Destination Address:</p>
+        //   <input
+        //     type="text"
+        //     value={destinationAddress}
+        //     onChange={(e) => setDestinationAddress(e.target.value)}
+        //   />
+        //   <p>Attached NEAR:</p>
+        //   <input
+        //     type="text"
+        //     value={attachedNear}
+        //     onChange={(e) => setAttachedNear(e.target.value)}
+        //   />
+        //   <p>Data:</p>
+        //   <textarea
+        //     value={data}
+        //     onChange={(e) => setData(e.target.value)}
+        //   ></textarea>
+        //   <br />
+        //   <button onClick={handleSend}>Send Transaction</button>
+        // </div>
         <button onClick={handleConnect}>Connect to Web3</button>
       )}
     </div>
