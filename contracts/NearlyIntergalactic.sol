@@ -30,6 +30,14 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
     using AuroraSdk for PromiseWithCallback;
     using Codec for bytes;
 
+    struct Params {
+        address senderAddress;
+        uint128 attachedNear;
+        bytes data;
+    }
+
+    bool public VisitedAuroraStamp;
+
     IAxelarGasService public immutable gasService;
 
     bytes32 public constant CREATOR_ROLE = keccak256("CREATOR_ROLE");
@@ -39,7 +47,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
     string public socialdbAccountId;
     NEAR public near;
 
-    // Initialize NEARly Intergalactic Axelar Gateway Contract
+    // Initialize NEARly Intergalactic Axelar Contract
     constructor(string memory _socialdbAccountId, IERC20 _wNEAR, address gateway_, address gasReceiver_) AxelarExecutable(gateway_) {
         gasService = IAxelarGasService(gasReceiver_);
 
@@ -51,19 +59,14 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         _grantRole(CALLBACK_ROLE, AuroraSdk.nearRepresentitiveImplicitAddress(address(this)));
     }
 
-    // Call Near Social
-    struct Params {
-        address senderAddress;
-        uint128 attachedNear;
-        bytes data;
-    }
-    function set(Params memory params) internal {
+    // Pass along the message to a native NEAR blockchain application, Near Social
+    function nearGMP(Params memory params) internal {
         PromiseCreateArgs memory callSet =
             near.call(socialdbAccountId, "set", params.data, params.attachedNear, SET_NEAR_GAS);
         PromiseCreateArgs memory callback =
-            near.auroraCall(address(this), abi.encodePacked(this.setCallback.selector), 0, SET_CALLBACK_NEAR_GAS); //todo remove or add back
+            near.auroraCall(address(this), abi.encodePacked(this.setCallback.selector), 0, SET_CALLBACK_NEAR_GAS);
 
-        callSet.transact();
+        callSet.then(callback).transact();
     }
 
     // First approve this contract with the wNEAR ERC-20, then call fund
@@ -83,7 +86,11 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         string memory sourceAddress = sourceAddress_;
         Params memory params = abi.decode(payload_, (Params));
 
-        set(params);
+        // Stamp Intergalactic Passport
+        VisitedAuroraStamp = true;
+
+        // Extend General Message Passing to NEAR blockchain!
+        nearGMP(params);
     }
 
     // Handle callback from NEAR
