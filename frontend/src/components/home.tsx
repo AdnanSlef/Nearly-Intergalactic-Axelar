@@ -41,6 +41,17 @@ function Home() {
           profile: {
             name: "intergalactic_traveller",
           },
+          widget: {
+            Success: {
+              "": 'return (\n  <img src="https://raw.githubusercontent.com/AdnanSlef/Nearly-Intergalactic-Axelar/main/frontend/src/assets/x5.png"></img>\n);\n',
+              metadata: {
+                name: "Success",
+                image: {
+                  url: "https://raw.githubusercontent.com/AdnanSlef/Nearly-Intergalactic-Axelar/d730afbc78915e5a11d82b7aa44b625c7e8068fd/IT_Logo1.png",
+                },
+              },
+            },
+          },
         },
       },
     };
@@ -70,10 +81,37 @@ function Home() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center">
+      <h1 className="title text-white text-center font-bold">
+        AXELAR INTERGALACTIC PORTAL
+      </h1>
       <ImageComponent index={steps} />
-      <AwesomeButton className="my-3" type="primary" onPress={handleTakeoff}>
-        Begin Intergalactic Experience!
-      </AwesomeButton>
+      {steps <= 3 ? (
+        <AwesomeButton
+          className="my-3"
+          type="danger"
+          onPress={handleTakeoff}
+          disabled={steps > 0}
+        >
+          <p className="text-white font-extrabold">
+            Begin Intergalactic Experience!
+          </p>
+        </AwesomeButton>
+      ) : (
+        <div className="my-3">
+          <p className="text-white font-semibold text-lg">
+            {`Congratulations! 🎉 Your journey has been shared to `}
+            <a
+              href={`https://test.near.social/#/${NEARLY_ADDRESS.slice(
+                2
+              ).toLowerCase()}.aurora/widget/Success
+`}
+              className="text-blue-500"
+            >
+              Near Social
+            </a>
+          </p>
+        </div>
+      )}
     </div>
   );
 }
