@@ -1,6 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .space-background {
     background-image: url('./assets/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   }
+
+
+
+
+  .title {
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif; /* Replace 'Your Cool Font' with the desired cool font */
+    font-size: 32px; /* Adjust the font size as needed */
+    text-transform: uppercase; /* Apply uppercase text */
+    letter-spacing: 2px; /* Add letter spacing for a cool effect */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow */
+  }
+  
