@@ -25,7 +25,7 @@ contract ExecutableSample is AxelarExecutable {
     function send(
         string calldata destinationChain,
         string calldata destinationAddress,
-        uint128 attachedNear, 
+        uint128 attachedNear,
         bytes memory data
     ) external payable {
         Params memory params = Params(msg.sender, attachedNear, data);

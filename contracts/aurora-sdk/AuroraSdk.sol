@@ -139,6 +139,7 @@ library AuroraSdk {
         }
 
         if (nearBalance > 0) {
+            // No need to transfer from sender; wNEAR transfer is handled separately
             // near.wNEAR.transferFrom(msg.sender, address(this), uint256(nearBalance));
         }
 
