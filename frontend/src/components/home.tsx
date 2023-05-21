@@ -1,11 +1,12 @@
+import { BigNumber } from "bignumber.js";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 import { HOME_ABI, HOME_ADDRESS, NEARLY_ADDRESS } from "../utils/constants";
 import { handleStop } from "../utils/handleStop";
 import useInterval from "../utils/useInterval";
-import { BigNumber } from "bignumber.js";
-import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/styles.css";
+import ImageComponent from "./slide";
 
 function Home() {
   const [steps, setSteps] = useState(0);
@@ -69,11 +70,8 @@ function Home() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center">
-      <AwesomeButton
-        // cssModule={AwesomeButtonStyles}
-        type="primary"
-        onPress={handleTakeoff}
-      >
+      <ImageComponent index={steps} />
+      <AwesomeButton className="my-3" type="primary" onPress={handleTakeoff}>
         Begin Intergalactic Experience!
       </AwesomeButton>
     </div>
