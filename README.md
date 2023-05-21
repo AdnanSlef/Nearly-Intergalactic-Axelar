@@ -1,6 +1,6 @@
 # Intergalactic PioNEARing with Axelar
 
-![](https://raw.githubusercontent.com/AdnanSlef/Nearly-Intergalactic-Axelar/main/frontend/src/assets/x5.png)
+![](https://github.com/AdnanSlef/Nearly-Intergalactic-Axelar/blob/main/passport.gif?raw=true)
 
 ## ✨ Inspiration
 
