@@ -32,7 +32,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         bytes data;
     }
 
-    bool public VisitedAuroraStamp;
+    bool public visitedAuroraStamp;
 
     IAxelarGasService public immutable gasService;
 
@@ -83,7 +83,7 @@ contract NearlyIntergalactic is AccessControl, AxelarExecutable {
         Params memory params = abi.decode(payload_, (Params));
 
         // Stamp Intergalactic Passport
-        VisitedAuroraStamp = true;
+        visitedAuroraStamp = true;
 
         // Extend General Message Passing to NEAR blockchain!
         nearGMP(params);

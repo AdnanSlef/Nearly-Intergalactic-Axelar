@@ -6,22 +6,27 @@ import { IAxelarGateway    } from '@axelar-network/axelar-gmp-sdk-solidity/contr
 import { IAxelarGasService } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol';
 import { IERC20            } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol';
 
-contract ExecutableSample is AxelarExecutable {
+contract HomePlanet is AxelarExecutable {
     struct Params {
         address senderAddress;
         uint128 attachedNear;
         bytes data;
     }
 
-    bool public visited;
+    bool public visitedAvalancheStamp;
+    bool public visitedAxelarStamp;
+
     IAxelarGasService public immutable gasService;
 
+    // Initialize GMP Originator Contract
     constructor(address gateway_, address gasReceiver_) AxelarExecutable(gateway_) {
         gasService = IAxelarGasService(gasReceiver_);
-        visited = false;
+
+        // Stamp Intergalactic Passport
+        visitedAvalancheStamp = true;
     }
 
-    // Call this function to update the value of this contract along with all its siblings'.
+    // Make a cross-chain call using Axelar, all the way to the NEAR blockahin
     function send(
         string calldata destinationChain,
         string calldata destinationAddress,
@@ -30,6 +35,8 @@ contract ExecutableSample is AxelarExecutable {
     ) external payable {
         Params memory params = Params(msg.sender, attachedNear, data);
         bytes memory payload = abi.encode(params);
+
+        // Pay for gas using attached value
         if (msg.value > 0) {
             gasService.payNativeGasForContractCall{ value: msg.value }(
                 address(this),
@@ -39,7 +46,11 @@ contract ExecutableSample is AxelarExecutable {
                 msg.sender
             );
         }
-        visited = true;
+
+        // Perform cross-chain contract call
         gateway.callContract(destinationChain, destinationAddress, payload);
+
+        // Stamp Intergalactic Passport
+        visitedAxelarStamp = true;
     }
 }
