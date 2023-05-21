@@ -4,6 +4,7 @@ import image2 from "../assets/x2.png";
 import image3 from "../assets/x3.png";
 import image4 from "../assets/x4.png";
 import image5 from "../assets/x5.png";
+import "./ImageComponent.css";
 
 const ImageComponent = ({ index }) => {
   const images = [image1, image2, image3, image4, image5];
@@ -21,6 +22,7 @@ const ImageComponent = ({ index }) => {
         src={selectedImage}
         alt={`Image ${index + 1}`}
         style={{ width: "500px" }}
+        className="hover-effect"
       />
     </div>
   );
