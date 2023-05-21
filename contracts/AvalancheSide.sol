@@ -13,10 +13,12 @@ contract ExecutableSample is AxelarExecutable {
         bytes data;
     }
 
+    bool public visited;
     IAxelarGasService public immutable gasService;
 
     constructor(address gateway_, address gasReceiver_) AxelarExecutable(gateway_) {
         gasService = IAxelarGasService(gasReceiver_);
+        visited = false;
     }
 
     // Call this function to update the value of this contract along with all its siblings'.
@@ -37,6 +39,7 @@ contract ExecutableSample is AxelarExecutable {
                 msg.sender
             );
         }
+        visited = true;
         gateway.callContract(destinationChain, destinationAddress, payload);
     }
 }

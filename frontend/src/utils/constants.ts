@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = "0x4aE061A6006846795d71ABCa9b2659cA05fa208d"; // Replace with the actual contract address
+export const CONTRACT_ADDRESS = "0x89746F853b4B958A9395C4136397eE2B6A59FBEe";
 export const CONTRACT_ABI = [
   {
     inputs: [
@@ -172,4 +172,17 @@ export const CONTRACT_ABI = [
     stateMutability: "view",
     type: "function",
   },
-]; // Replace with the actual contract ABI
+  {
+    inputs: [],
+    name: "visited",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+];

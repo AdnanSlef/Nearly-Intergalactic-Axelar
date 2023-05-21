@@ -19,8 +19,7 @@ function Home() {
   useEffect(() => {
     const initWeb3 = async () => {
       if (window.ethereum) {
-        const web3Instance = new Web3(window.ethereum);
-        await window.ethereum.enable();
+        const web3Instance = new Web3(await window.ethereum.enable());
         setWeb3(web3Instance);
       }
     };
@@ -61,9 +60,20 @@ function Home() {
 
     const payload = web3.utils.utf8ToHex(data);
 
-    await contract.methods
-      .send(destinationChain, destinationAddress, attachedNearUInt128, payload)
-      .send({ from: account, value: 0.1 });
+    const tx = await contract.methods.send(
+      destinationChain,
+      destinationAddress,
+      attachedNearUInt128,
+      payload
+    );
+    console.log("tx:", tx);
+    console.log(await web3.currentProvider);
+    console.log(contract);
+    const receipt = await tx.send({
+      from: account,
+      gas: await tx.estimateGas(),
+    });
+    console.log("rec:", receipt);
   };
 
   return (
